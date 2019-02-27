@@ -52,7 +52,6 @@ class User extends Authenticatable
         $array['role'] = $this->role;
         $array['role_name'] = $this->role_name;
         $array['authenticated'] = true;
-        $array['formatted_phone'] = $this->formatted_phone;
         return $array;
     }
 
@@ -73,25 +72,6 @@ class User extends Authenticatable
 
         }
 
-    }
-
-    public function getFormattedPhoneAttribute() {
-
-        $buf = [];
-        for($i=0;$i<strlen($this->phone);$i++) {
-            if(is_numeric($this->phone[$i])) {
-                array_push($buf,$this->phone[$i]);
-            }
-        }
-        $new_phone = [];
-        for($i=0;$i<count($buf);$i++) {
-            if($i > 0) {
-                array_push($new_phone,$buf[$i]);
-            } else {
-                array_push($new_phone,'7');
-            }
-        }
-        return implode($new_phone);
     }
 
 
