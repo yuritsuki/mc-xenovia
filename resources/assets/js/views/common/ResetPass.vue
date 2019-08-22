@@ -26,7 +26,7 @@
 
                     <div class="mt-4"></div>
 
-                    <div class="card p-4 mb-2" v-for="account in accounts">
+                    <div class="card p-4 mb-2" v-for="account in accounts" :key="account.id">
                         <a href="#" @click="setAccount(account)" class="card-full-link"></a>
                         <b>{{ account.role.description + ": " }}</b>{{ account.name }}
                     </div>
@@ -153,8 +153,8 @@
                     let comp = this;
                     post(comp,'api/public/check-reset-code', {token: this.token, code: this.code}, function() {
                         comp.step = 4;
-                    }, function(error) {
-                        component.error = {
+                    }, function() {
+                        comp.error = {
                             message: 'Неверный код.'
                         };
                     });
@@ -177,7 +177,7 @@
                             component.step = 2;
                             component.accounts = response.data.data;
                         }
-                    }, function(error) {
+                    }, function() {
                         component.loading = false;
                         component.error = {
                             message: 'Нет пользователя с таким номером телефона.'
@@ -236,8 +236,8 @@
                         comp.$nextTick(function() {
                             comp.login();
                         });
-                    }, function(error) {
-                        component.error = {
+                    }, function() {
+                        comp.error = {
                             message: 'Пароль должен совпадать и состоять как минимум из 6 символов.'
                         };
                     });

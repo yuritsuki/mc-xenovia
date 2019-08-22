@@ -126,7 +126,6 @@ class UserController extends Controller
         ]);
 
         $user = User::find($id);
-        sms_send($user->phone,'Код подтверждения: '.$reset->code);
 
         return response()->json(['status' => 'success', 'token' => $reset->token], 200);
     }

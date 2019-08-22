@@ -58,18 +58,7 @@ class Kernel extends HttpKernel
         'guest' => \App\Http\Middleware\RedirectIfAuthenticated::class,
         'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
         'isAdmin' => \App\Http\Middleware\IsAdministrator::class,
-        'isManager' => \App\Http\Middleware\IsManager::class,
-        'isStudent' => \App\Http\Middleware\IsStudent::class,
-        'isTeacher' => \App\Http\Middleware\IsTeacher::class,
-        'officeId' => \App\Http\Middleware\OfficeId::class,
-        'isTeacherGroups' => \App\Http\Middleware\IsTeacherGroups::class,
-        'isTeacherLesson' => \App\Http\Middleware\isTeacherLesson::class,
-        'isNotStudent' => \App\Http\Middleware\IsNotStudent::class,
-        'isNotTeacher' => \App\Http\Middleware\IsNotTeacher::class,
-        'isNotAccountant' => \App\Http\Middleware\IsNotAccountant::class,
         'isEditor' => \App\Http\Middleware\IsEditor::class,
         'isViewer' => \App\Http\Middleware\IsViewer::class,
-        'userIdManager' => \App\Http\Middleware\UserIdManager::class,
-        'isBought' => \App\Http\Middleware\isBought::class
     ];
 }

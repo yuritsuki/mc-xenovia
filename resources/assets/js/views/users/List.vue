@@ -1,8 +1,8 @@
 <template>
     <div>
-        <user-filter v-if="$common.data.roles" ref="filter" :load="load" v-on:filtered="filtered"></user-filter>
         <!-- Результаты -->
-        <div class="col-8 offset-4">
+        <div class="col-12 col-md-10 offset-md-2">
+            <user-filter v-if="$common.data.roles" ref="filter" :load="load" v-on:filtered="filtered"></user-filter>
             Найдено <b>{{ total }}</b> пользователя
             <button type="button" class="btn btn-primary btn-sm ml-2" @click="$refs.newUser.showModal()">добавить</button>
 
@@ -15,7 +15,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr v-for="user in users">
+                <tr v-for="user in users" :key="user.id">
                     <td>{{ user.name }}</td>
                     <td>{{ user.role.description }}</td>
                     <td>
@@ -30,7 +30,7 @@
             </table>
         </div>
 
-        <user-form ref="newUser" :data="$common.data" :_form="newUser" v-on:formSending="filtered"></user-form>
+        <user-form v-if="$common.data && $common.data.roles" ref="newUser" :data="$common.data" :_form="newUser" v-on:formSending="filtered"></user-form>
 
     </div>
 </template>
@@ -101,18 +101,15 @@
                 this.total = 0;
                 this.filterData = this.$refs.filter.filterData;
 
+                console.log(this.filterData);
                 this.$nextTick(function () {
                     this.$router.push({ path: '/control/users', query: this.filterData });
                     this.getList();
                 });
 
             },
-            handleScroll(e){
-                let body = document.body,
-                    html = document.documentElement;
-
-                let height = Math.max( body.scrollHeight, html.scrollHeight);
-
+            handleScroll(){
+                /* eslint-disable-next-line no-undef */
                 if($(window).scrollTop() + $(window).height() > $(document).height() - 100 && !this.scrollLoad) {
                     this.scrollLoad = true;
                     this.$nextTick(function () {

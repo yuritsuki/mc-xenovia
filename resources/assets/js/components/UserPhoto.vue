@@ -40,6 +40,7 @@
             let component = this;
 
             setTimeout(function () {
+                // eslint-disable-next-line
                 $(component.$el).bootstrapFileInput();
             }, 300);
 

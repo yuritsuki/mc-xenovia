@@ -7,14 +7,15 @@
     <link rel="stylesheet" href="{{ asset("/css/app.css") }}">
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-    <meta name="client-secret" content="AB9e31wWAlcuAs0ILI7c2B0mbgQg4v6kq3CrPPa3">
+    <meta name="client-secret" content="vT2GAMZXNQNdowrXCWDsrj4uddcnTCcyVQEBGwpj">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
 
 </head>
 <body>
 <div id="app">
     <div v-bind:class="{ 'bg-faded': !user }">
 
-        <sidebar v-if="user"></sidebar>
+        <sidebar ref="sidebar" v-if="user"></sidebar>
         <transition name="fade" mode="out-in">
             <router-view></router-view>
         </transition>

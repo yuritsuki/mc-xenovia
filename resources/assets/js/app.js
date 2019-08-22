@@ -14,12 +14,14 @@ import Common from './components/Common.vue';
 import vSelect from 'vue-select';
 import VTooltip from 'v-tooltip';
 import MaskedInput from 'vue-masked-input'
-import Chartkick from 'chartkick';
-import VueChartkick from 'vue-chartkick';
+// import Chartkick from 'chartkick';
+// import VueChartkick from 'vue-chartkick';
 import Auth from './packages/auth/auth';
 import User from './packages/user';
 import { VueMaskDirective } from 'v-mask';
+import dropdown from 'vue-my-dropdown';
 
+/* eslint-disable-next-line no-unused-vars */
 const dateLocales = Vue.prototype.$dateLocales = {
     "format": "DD.MM.YY",
     "separator": " — ",
@@ -63,6 +65,7 @@ window.Vue = require('vue');
 
 Vue.component('v-select', vSelect);
 Vue.component('masked-input', MaskedInput);
+Vue.component('dropdown', dropdown);
 
 Vue.use(BootstrapVue);
 Vue.use(VueRouter);
@@ -109,7 +112,7 @@ router.beforeEach((to, from, next) => {
 
 
 import { get } from './helpers/api'
-
+// eslint-disable-next-line
 const app = new Vue({
 
     router,
@@ -159,7 +162,6 @@ const app = new Vue({
         },
 
         setAccount(account, afterLogin) {
-
             this.$user.data = account;
             this.user = this.$user;
             this.userReady = this.ready = true;
@@ -167,13 +169,9 @@ const app = new Vue({
             if(afterLogin){
                 this.afterLogin(this.user);
             }
-
         },
-
-        afterLogin(user) {
-
+        afterLogin() {
             this.$router.push('/dashboard')
-
         }
 
     },

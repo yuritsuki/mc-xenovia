@@ -8,7 +8,7 @@
 
                     <div class="mt-4"></div>
 
-                    <div class="card p-4 mb-2" v-for="(account, index) in $root.accounts">
+                    <div class="card p-4 mb-2" v-for="(account, index) in $root.accounts" :key="account.id">
                         <a href="#" @click="setAccount(account, index)" class="card-full-link"></a>
                         {{ account.name }}
                     </div>

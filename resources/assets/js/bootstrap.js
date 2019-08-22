@@ -1,4 +1,4 @@
-
+/* eslint-disable */
 window._ = require('lodash');
 
 /**

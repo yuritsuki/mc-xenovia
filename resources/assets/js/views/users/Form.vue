@@ -1,11 +1,11 @@
 <template>
-
     <div v-if="form">
         <b-modal v-if="data" ref="modal" size="lg" :title="title">
 
             <div  v-bind:class="{ 'has-error': errors && errors.role_id }" class="form-group row">
                 <label class="col-3 col-form-label">Роль</label>
                 <div class="col-9">
+                    <!-- eslint-disable-next-line vue/no-duplicate-attributes -->
                     <v-select :on-change="selectRole" label="description" value="id" :value.sync="form.role" :options="roles" placeholder="Выберите роль"></v-select>
                     <form-error v-if="errors && errors.role_id" :errors="errors">
                         {{ errors.role_id[0] }}
@@ -159,7 +159,7 @@
                 }, function (error) {
 
                     _this.formSending = false;
-                    _this.errors = error.response.data;
+                    _this.errors = error.response.data.errors;
 
                 });
 

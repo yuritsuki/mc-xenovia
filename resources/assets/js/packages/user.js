@@ -1,3 +1,4 @@
+
 import { get } from '../helpers/api'
 
 export default function (Vue) {
@@ -16,6 +17,7 @@ export default function (Vue) {
 
                 component.data = response.data;
                 component.ready = true;
+                /* eslint-disable-next-line no-undef */
                 _this.$root.user = data;
                 _this.$root.userReady = true;
 

@@ -1,5 +1,5 @@
 <template>
-    <div class="col-10 offset-2">
+    <div class="col-12 col-md-10 offset-md-2">
         Hello World!
     </div>
 </template>

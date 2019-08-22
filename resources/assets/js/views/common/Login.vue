@@ -30,7 +30,7 @@
 
                     <div class="mt-4"></div>
 
-                    <div class="card p-4 mb-2" v-for="account in accounts">
+                    <div class="card p-4 mb-2" v-for="account in accounts" :key="account.id">
                         <a href="#" @click="setAccount(account)" class="card-full-link"></a>
                         <b>{{ account.role.description + ": " }}</b>{{ account.name }}
                     </div>
@@ -92,7 +92,7 @@
                             component.select = true;
                             component.accounts = response.data.data;
                         }
-                    }, function(error) {
+                    }, function() {
                         component.loading = false;
                         component.error = {
                             message: 'Имя пользователя и пароль не совпадают.'

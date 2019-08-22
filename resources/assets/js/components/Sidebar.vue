@@ -2,7 +2,16 @@
 
     <div class="sidebar container-fluid mt-4">
         <div class="row">
-            <div class="col-2 bg-faded fixed-top h-100 pt-4 text-white bg-inverse small" style="z-index:3003">
+            <div
+                    ref="sidebar"
+                    class="d-none d-xs-none d-md-block col-6 col-sm-3 col-md-2 bg-faded fixed-top h-100 pt-4 text-white bg-inverse small" style="z-index:3006"
+                    :style="{'display': forceShow ? 'block!important' : 'inherit' }"
+            >
+                <div @click="forceShow = false" class="d-md-none h4 p-2" style="
+                        text-align: end;position: absolute;width: 100%;left: 2rem;top: 0px;background: #292b2c!important;z-index: -1;background-blend-mode: lighten;
+                    ">
+                    <span class="text-white fa fa-times"></span>
+                </div>
                 <div class="clearfix">
                     <div class="pull-left mr-2">
                         <div
@@ -32,7 +41,7 @@
 
                 <ul>
                     <li class="mb-2"><router-link to="/dashboard" :class="{'text-muted': dashboard.indexOf($route.name) < 0,'text-white': dashboard.indexOf($route.name) > -1 }"><span class="fa fa-fw fa-signal mr-2"></span> Показатели</router-link></li>
-                    <li class="mb-2"><router-link to="/control" :class="{'text-muted': control.indexOf($route.name) < 0,'text-white': control.indexOf($route.name) > -1 }" ><span class="fa fa-fw fa-wrench mr-2"></span> Управление</router-link></li>
+                    <li class="mb-2" ><router-link to="/control" :class="{'text-muted': control.indexOf($route.name) < 0,'text-white': control.indexOf($route.name) > -1 }" ><span class="fa fa-fw fa-wrench mr-2"></span> Управление</router-link></li>
                 </ul>
                 <hr>
                 <ul>
@@ -43,6 +52,11 @@
             </div>
         </div>
         <profile ref="profile" :_form="$root.user.data"></profile>
+        <div
+                style="position: fixed;left:0; top: 0; z-index: 3005;cursor:pointer;"
+                class="d-md-none h4 p-2 bg-inverse text-white"
+                @click="forceShow = true"
+        ><span class="fa fa-reorder"></span></div>
     </div>
 
 </template>
@@ -61,18 +75,19 @@
                     'control',
                     'users',
                     'user',
-                ]
+                ],
+                forceShow: false,
             }
         },
         components: {
             Profile : require('./Profile.vue'),
         },
+        watch: {
+            '$route.path'() {
+                this.forceShow = false;
+            }
+        },
         methods: {
-
-            getCsrf() {
-
-                return Laravel.csrfToken;
-            },
 
             logout() {
 

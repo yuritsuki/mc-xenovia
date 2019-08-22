@@ -1,17 +1,25 @@
 <template>
 
-    <div>
+    <div v-if="user">
 
-        <div class="col-2 offset-2 fixed-top h-100 pt-4">
-            <button type="button" class="btn btn-secondary btn-block text-left btn-sm" @click="edit()" ><span class="fa fa-fw fa-pencil"></span> Редактировать</button>
-            <button type="button" class="btn btn-secondary btn-block text-left btn-sm" @click="$refs.modalDelete.show()"><span class="fa fa-fw fa-trash"></span> Удалить</button>
-
-        </div>
-
-        <div class="col-8 offset-4 pr-5">
+        <div class="col-12 col-md-10 offset-md-2 pr-5">
             <div class="mb-5 mt-1">
                 <img :src="user.photo" class="rounded-circle float-left mr-2" style="margin-top: -5px; width: 40px;">
                 <span class="h4">{{ user.name }}</span>
+                <b-tooltip class="d-inline-block" triggers="hover" content="редактировать">
+                    <button type="button" class="btn btn-secondary text-left btn-sm " @click="edit()" ><span class="fa fa-pencil"></span></button>
+                </b-tooltip>
+                <b-tooltip class="d-inline-block" triggers="hover" :content="user.in_archive ? 'восстановить из архива' : 'архивировать'">
+                    <button v-if="$user.isAdmin()"
+                            type="button"
+                            class="btn btn-secondary text-left btn-sm"
+                            @click="archive">
+                        <span :class="{'fa fa-undo': user.in_archive, 'fa fa-archive': !user.in_archive}"></span>
+                    </button>
+                </b-tooltip>
+                <b-tooltip class="d-inline-block" triggers="hover" content="удалить">
+                    <button type="button" class="btn btn-danger text-left btn-sm" @click="$refs.modalDelete.show()"><span class="fa fa-trash"></span></button>
+                </b-tooltip>
             </div>
 
             <div class="h5">Контактная информация</div>
@@ -68,7 +76,6 @@
 
         components: {
             'user-form': require('./Form.vue'),
-            FormError : require('./../../components/FormError.vue'),
         },
 
         methods: {
@@ -96,7 +103,20 @@
                 get(_this, '/api/user/' + this.id, {}, function (response) {
                     _this.user = response.data;
                 });
-            }
+            },
+            archive() {
+
+                let _this = this;
+                get(_this, '/api/user-archive/' + this.id, {  }, function () {
+                    _this.getItem();
+                },function (error) {
+                    _this.formSending = false;
+                    _this.errors = error.response.data;
+                });
+
+
+            },
+
         },
 
         created() {
@@ -105,7 +125,7 @@
 
         }
 
-        }
+    }
 
 
 </script>

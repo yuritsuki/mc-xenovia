@@ -10,6 +10,7 @@
   <a class="btn">Browse</a>
 
 */
+/* eslint-disable */
 (function($) {
 
 $.fn.bootstrapFileInput = function() {

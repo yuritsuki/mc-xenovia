@@ -1184,3 +1184,10 @@ body {
 .fullWidthButton a {
   width:100%;
 }
+.btn-group.btn-group-sm.btn-group-justified {
+  width: 100%;
+  overflow-x: scroll;
+}
+.input-group .my-dropdown-dd {
+  left: 0 !important;
+}

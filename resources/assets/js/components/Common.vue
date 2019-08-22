@@ -4,7 +4,6 @@
 
 <script>
 
-    import moment from 'moment';
     import { get } from '../helpers/api';
 
     export default  {
