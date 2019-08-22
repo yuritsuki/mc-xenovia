@@ -19,6 +19,7 @@ MantiCore is a group of polished and time-tested templates for CRM-like projects
 ## Installation
 
 *Configurate your .env*
+
 composer install
 
 php artisan key:generate
