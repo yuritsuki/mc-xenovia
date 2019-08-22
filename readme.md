@@ -28,6 +28,8 @@ php artisan migrate
 
 php artisan passport:install
 
+copy token to blade meta named "client secret"
+
 php artisan storage:link
 
 npm install
