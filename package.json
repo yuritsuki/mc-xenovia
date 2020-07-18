@@ -20,7 +20,7 @@
     "friendly-errors-webpack-plugin": "^1.6.1",
     "jquery": "^3.1.1",
     "laravel-mix": "0.*",
-    "lodash": "^4.17.4",
+    "lodash": "^4.17.19",
     "vue": "^2.1.10",
     "vue-masked-input": "^0.5.2",
     "vue-router": "^2.5.3",
