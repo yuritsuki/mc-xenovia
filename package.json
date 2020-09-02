@@ -28,7 +28,7 @@
     "webpack-livereload-plugin": "^0.11.0"
   },
   "dependencies": {
-    "bootstrap-vue": "^0.16.1",
+    "bootstrap-vue": "^2.0.0",
     "chartkick": "^2.2.4",
     "moment": "^2.18.1",
     "node-sass": "^4.12.0",
